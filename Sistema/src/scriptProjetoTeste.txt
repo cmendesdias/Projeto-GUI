@@ -1,0 +1,40 @@
+CREATE DATABASE projetojava;
+USE projetojava;
+
+CREATE TABLE cursos (
+    id_curso INT PRIMARY KEY AUTO_INCREMENT,
+     nome_curso VARCHAR(50),
+     cod_inst INT,
+     carga_curso VARCHAR(10),
+     tipo_curso VARCHAR(15)
+)ENGINE = InnoDB;
+
+CREATE TABLE alunos (
+	id_aluno INT PRIMARY KEY AUTO_INCREMENT,
+    nome_aluno VARCHAR(50),
+    nasc_aluno VARCHAR(10),
+    id_curso_aluno_fk INT,
+     FOREIGN KEY (id_curso_aluno_fk) REFERENCES cursos(id_curso)
+)ENGINE = InnoDB;
+
+CREATE TABLE disciplina (
+	id_disciplina INT PRIMARY KEY AUTO_INCREMENT,
+    nome_disciplina VARCHAR(20),
+    carga_disciplina VARCHAR(20),
+    quant_aulas_disciplinas VARCHAR(30),
+    id_curso_disciplina_fk INT,
+    FOREIGN KEY (id_curso_disciplina_fk) REFERENCES cursos(id_curso)
+)ENGINE = InnoDB;
+
+CREATE TABLE professor (
+	id_professor INT PRIMARY KEY AUTO_INCREMENT,
+    nome_prof VARCHAR(30),
+    nasc_prof VARCHAR(30),
+    endereco VARCHAR(200),
+    certificado VARCHAR(30),
+    id_curso_prof_fk INT,
+	id_disciplina_fk INT,
+	FOREIGN KEY (id_curso_prof_fk) REFERENCES cursos(id_curso),
+    FOREIGN KEY (id_disciplina_fk) REFERENCES disciplina(id_disciplina)
+)ENGINE = InnoDB;
+
